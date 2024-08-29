@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:phantomscanbliss/api/urls.dart';
 import 'package:phantomscanbliss/bloc/best_selling_bloc.dart';
 import 'package:phantomscanbliss/bloc/category_bloc.dart';
 import 'package:phantomscanbliss/bloc/category_product_bloc.dart';
@@ -44,7 +45,7 @@ class Api {
         var request = http.Request(
             'GET',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}products/categories?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&per_page=20'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.productCategory}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&per_page=20'));
         debugPrint("==== request =====> categoryBloc ====> $request");
 
         request.headers.addAll(headers);
@@ -82,7 +83,7 @@ class Api {
         var request = http.Request(
             'GET',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}products?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&category=$categoryID&status=publish&per_page=6'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.products}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&category=$categoryID&status=publish&per_page=6'));
         debugPrint("==== request =====> productListApi ====> $request");
 
         request.headers.addAll(headers);
@@ -117,7 +118,7 @@ class Api {
         var request = http.Request(
             'GET',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}products?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&category=$categoryID&status=publish&catalog_visibility=visible'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.products}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&category=$categoryID&status=publish&catalog_visibility=visible'));
         debugPrint("==== request =====> categoryproductListApi ====> $request");
 
         request.headers.addAll(headers);
@@ -156,7 +157,7 @@ class Api {
         var request = http.Request(
             'GET',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}products?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.products}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
         debugPrint(
             "==== request =====> bestsellingProductsListApi ====> $request");
 
@@ -196,7 +197,7 @@ class Api {
         var request = http.Request(
             'POST',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}products/$productID?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.products}/$productID?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}'));
         debugPrint(
             "==== productDetailApi =====> bestsellingProductsListApi ====> $request");
 
@@ -234,9 +235,7 @@ class Api {
           'Content-Type': 'application/json'
         };
         var request = http.Request(
-            'POST',
-            Uri.parse(
-                'https://phantomscannabliss.com/wp-json/custom/v1/login'));
+            'POST', Uri.parse('${urls.custombaseurl}${urls.login}'));
         debugPrint("==== loginApi =====> loginApi ====> $request");
         request.body =
             json.encode({"username": userName, "password": password});
@@ -290,9 +289,7 @@ class Api {
           'Content-Type': 'application/json'
         };
         var request = http.Request(
-            'POST',
-            Uri.parse(
-                'https://phantomscannabliss.com/wp-json/custom/v1/register'));
+            'POST', Uri.parse('${urls.custombaseurl}${urls.register}'));
         debugPrint("==== loginApi =====> loginApi ====> $request");
         request.body = json.encode({
           "username": userName,
@@ -341,7 +338,7 @@ class Api {
         var request = http.Request(
             'GET',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}customers/${SpUtil.getInt(SpConstUtil.userID)}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.customers}/${SpUtil.getInt(SpConstUtil.userID)}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
         debugPrint("==== request =====> getCustomerApi ====> $request");
 
         request.headers.addAll(headers);
@@ -380,7 +377,7 @@ class Api {
         var request = http.Request(
             'PUT',
             Uri.parse(
-                '${SpUtil.getString(SpConstUtil.baseurl)}customers/${SpUtil.getInt(SpConstUtil.userID)}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
+                '${SpUtil.getString(SpConstUtil.baseurl)}${urls.customers}/${SpUtil.getInt(SpConstUtil.userID)}?consumer_key=${SpUtil.getString(SpConstUtil.consumerKey)}&consumer_secret=${SpUtil.getString(SpConstUtil.consumerSecret)}&orderby=popularity'));
         debugPrint("==== request =====> updateCustomerApi ====> $request");
         request.body = json.encode(
             {"first_name": firstName, "last_name": lastName, "email": email});

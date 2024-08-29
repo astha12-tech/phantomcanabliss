@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "459587770913",
+    "project_id": "phantomscanbliss",
+    "storage_bucket": "phantomscanbliss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459587770913:android:56ce2d8a54ae3f5391e160",
+        "android_client_info": {
+          "package_name": "com.example.phantomscanbliss"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC51io2JOfbKAO9S6tHwVOFwb_GUHkY0QM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
